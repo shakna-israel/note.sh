@@ -1,0 +1,27 @@
+search() {
+  # Search By Tag:
+  echo 'Tagged:'
+  for f in "$note_dir"/*.tags; do
+    if grep -q "$1" "$f"; then
+      notename=$(basename "$f" .tags)
+      echo "$notename"
+    fi
+  done
+
+  # Search by Relationship
+  echo 'Linked:'
+  if [ -n $(find "$note_dir" -maxdepth 1 -name "$1.*.link") ]; then
+    find "$note_dir" -maxdepth 1 -name "$1.*.link" -print
+  elif [ -n $(find "$note_dir" -maxdepth 1 -name "*.$1.link") ]; then
+    find "$note_dir" -maxdepth 1 -name "*.$1.link" -print
+  fi
+
+  # Search by Content
+  echo 'Contains:'
+  for f in "$note_dir"/*.note; do
+    if grep -q "$1" "$f"; then
+      notename=$(basename "$f" .note)
+      echo "$notename"
+    fi
+  done
+}

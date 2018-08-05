@@ -1,0 +1,39 @@
+hr() {
+  # Print a single line of -, the width of the term
+  # We recheck width every time, because the user can resize at anytime
+  # No error checking on tput, because if that fails... Bigger problems
+  # are at hand.
+  width=$(tput cols)
+  printf '%0.s-' $(seq 1 "$width")
+}
+
+help() {
+  echo 'note.sh - Note Taking Application'
+  echo "Version v$VER"
+  hr
+  echo 'note.sh --help'
+  echo 'Alternate: `note.sh -h`'
+  echo 'Show this message.'
+  hr
+  echo 'Set $NOTESH_HOME to set a different note directory.'
+  hr
+  echo 'note.sh [Note Title]'
+  echo 'Opens a new or pre-existing note'
+  hr
+  echo 'note.sh [Note Title] --tag [tag]'
+  echo 'Alternate: `note.sh [Note Title] -t [tag]`'
+  echo 'Tags a pre-exisiting note.'
+  hr
+  echo 'note.sh [Note Title] --untag [tag]'
+  echo 'Alternate: `note.sh [Note Title] -ut [tag]`'
+  echo 'Removes a tag from a pre-exisiting note.'
+  hr
+  echo 'note.sh [Note Title] --link [Note Title]'
+  echo 'Link two notes together. Two way relationship.'
+  hr
+  echo 'note.sh [Note Title] --link [Note Title]'
+  echo 'Remove an existing relationship between two notes.'
+  hr
+  echo 'note.sh search [tag | word | Note Title]'
+  echo 'Search for a note related to the given value.'
+}

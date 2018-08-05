@@ -1,0 +1,20 @@
+link() {
+  if [ -f "$note_dir"/"$1"."$2".link ]; then
+    :
+  elif [ -f "$note_dir"/"$2"."$1".link ]; then
+    :
+  else
+    touch "$note_dir"/"$1"."$2".link
+  fi
+}
+
+unlink() {
+  if [ -f "$note_dir"/"$1"."$2".link ]; then
+    rm "$note_dir"/"$1."$2".link
+  elif [ -f "$note_dir"/"$2"."$1".link ]; then
+    rm "$note_dir"/"$2."$1".link
+  else
+    echo 'No such link exists.' >&2
+    exit 1
+  fi
+}

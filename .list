@@ -1,0 +1,5 @@
+list() {
+  for f in "$note_dir"/*.note; do
+    echo $(basename "$f" .note)
+  done
+}

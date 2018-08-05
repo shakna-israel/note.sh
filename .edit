@@ -1,0 +1,7 @@
+edit() {
+  if [ -n "$EDITOR" ]; then
+    "$EDITOR" "$note_dir"/"$1".note
+  else
+    vi "$note_dir"/"$1".note
+  fi
+}
