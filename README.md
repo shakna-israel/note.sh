@@ -30,6 +30,7 @@ Requires:
 * echo
 * find
 * test
+* vi or another text editor set with $EDITOR
 
 You may have to install ```make```, the others are likely on your system.
 
